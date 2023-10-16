@@ -7,17 +7,25 @@ import Patientregistration from "./components/patient/Patientregistration";
 import Home from "./components/home/Home";
 import Settings from "./components/settings/Settings";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Createaccount from './components/login/Createaccount';
 
+
+     {/* <Login/> 
+          <Sidenav/> */}
+                    {/* <Navbar/>
+          <Sidenav/> */}
 function App() {
+
   return (
         <div>
-          {/* <Login/> 
-          <Sidenav/> */}
+     
           <BrowserRouter>
 
             <Routes>
-
+            
                <Route path="/" element={<Login />} />
+               <Route path="/createaccount" element={<Createaccount />} /> 
+
                <Route path="/home" element={<Home />} />
                <Route path="/doctorregistration" element={<Doctorregistration />} />
                <Route path="/patientregistration" element={<Patientregistration />} />
@@ -26,6 +34,9 @@ function App() {
             </Routes>
 
           </BrowserRouter>
+        
+
+
           
         </div>
   );

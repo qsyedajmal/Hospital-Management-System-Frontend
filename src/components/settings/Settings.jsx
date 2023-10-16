@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 export default function Settings() {
   return (
     <>
-    <Sidenav/>
+    {/* <Sidenav/> */}
     <Box component="main" sx={{ flexGrow: 1, p: 10 , paddingRight:5}}>
 
         <h1>hello</h1>

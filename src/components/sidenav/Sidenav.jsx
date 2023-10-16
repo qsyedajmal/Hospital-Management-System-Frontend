@@ -23,6 +23,7 @@ import AccessibleIcon from '@mui/icons-material/Accessible';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { FaUserDoctor } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../Context';
 
 
 const drawerWidth = 240;
@@ -59,7 +60,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== 'appContext.open',
 })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
@@ -76,55 +77,58 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Sidenav() {
+
+  const appContext = useAppContext()
+
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+ //  const [open, setOpen] = React.useState(false);
   const navigate = useNavigate()
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} >
       <CssBaseline />
       
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={appContext.open} className='transition delay-1000'>
         
-        <div className='flex justify-around items-center'> 
+        <div className='flex justify-around items-center bg-blue-700 text-white '> 
         {
-          open && <div className='text-2xl'>Menu</div>
+          appContext.open && <div className='text-2xl'>Menu</div>
         }
 
-        <DrawerHeader >
+        <DrawerHeader className='bg-blue-700 '>
 
-          <MenuIcon onClick={()=>setOpen(!open)} className=''>
+          {/* <MenuIcon onClick={()=>appContext.setOpen(!appContext.open)} className=''>
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />
             ) : (
               <ChevronLeftIcon />
             )}
-          </MenuIcon>
+          </MenuIcon> */}
         </DrawerHeader>
 
         </div>
 
 
         <Divider />
-        <List>
+        <List className='transition '>
         <ListItem  disablePadding sx={{ display: 'block' }} onClick={()=>navigate('/home')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: appContext.open ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: appContext.open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                   <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Home" sx={{ opacity: appContext.open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
@@ -132,20 +136,20 @@ export default function Sidenav() {
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: appContext.open ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                     mr: open ? 3 : 'auto',
+                     mr: appContext.open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                   <FaUserDoctor className='w-6 h-4'/>
                 </ListItemIcon>
-                <ListItemText primary="Doctor Registration" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Doctor Registration" sx={{ opacity: appContext.open ? 1 : 0 }} />
               </ListItemButton>
               </ListItem>
 
@@ -153,20 +157,20 @@ export default function Sidenav() {
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: appContext.open ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: appContext.open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                   <AccessibleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Patient Registration" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Patient Registration" sx={{ opacity: appContext.open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             
@@ -176,20 +180,20 @@ export default function Sidenav() {
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: appContext.open ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: appContext.open ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                   <SettingsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Settings" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Settings" sx={{ opacity: appContext.open ? 1 : 0 }} />
               </ListItemButton>
               </ListItem>
 
